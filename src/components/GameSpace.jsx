@@ -1,9 +1,24 @@
 import React from "react";
+import "./GameSpace.css"
 
 
-export default function GameSpace() {
+// eslint-disable-next-line react/prop-types
+export default function GameSpace({value, index, updateBoard}) {
+
+  const handleUpdate = () => {
+    if (value === null) {
+      updateBoard(index)
+    }
+  }
 
   return (
-    <button></button>
+    <section className="space-container">
+      <button
+        className="space-btn"
+        onClick={() => handleUpdate()}
+      >
+      {value}
+      </button>
+    </section>
   )
 }

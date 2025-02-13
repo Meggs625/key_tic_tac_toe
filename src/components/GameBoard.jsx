@@ -3,8 +3,8 @@ import './GameBoard.css'
 import GameSpace from "./GameSpace";
 
 const PLAYER = {
-  ONE: "X",
-  TWO: "O"
+  ONE: "🌿",
+  TWO: "🦏"
 }
 
 const winningCombinations = [
@@ -22,7 +22,8 @@ export default function GameBoard() {
 
   const [currentBoard, setCurrentBoard] = useState(Array(9).fill(null));
   const [turn, setTurn] = useState(PLAYER.ONE);
-  const [gameWinner, setGameWinner] = useState(null);
+  const [gameEndBanner, setGameEndBanner] = useState(null);
+  const [gameRounds, setGameRounds] = useState(1);
 
   const updateBoard = (idx) => {
     const copyCurrentBoard = [...currentBoard];
@@ -41,7 +42,10 @@ export default function GameBoard() {
       }
     }
     if (winner) {
-      setGameWinner(winner);
+      setGameEndBanner(`Congratulations ${winner}!!`);
+      storeGameData();
+    } else if (!winner && !updatedBoard.includes(null)) {
+      setGameEndBanner("It's a tie!");
       storeGameData();
     } else {
       const newTurn = turn === PLAYER.ONE ? PLAYER.TWO : PLAYER.ONE;
@@ -50,17 +54,15 @@ export default function GameBoard() {
   }
 
   const storeGameData = () => {
-    console.log("storing")
+    setGameRounds(gameRounds + 1)
     setTimeout(() => {
       setCurrentBoard(Array(9).fill(null));
-      setGameWinner(null)
-
-    }, 1000)
+      setGameEndBanner(null);
+    }, 1000);
   }
-
   return (
     <section className="main-view">
-    {gameWinner && (<h1>{`Congratulations ${gameWinner}`}</h1>)}
+    <h1>{gameEndBanner ? gameEndBanner : "Welcome!"}</h1>
     <section className="game-board-container">
       {currentBoard.map((val, idx) => (
         <GameSpace key={idx} value={currentBoard[idx]} index={idx} updateBoard={updateBoard}/>

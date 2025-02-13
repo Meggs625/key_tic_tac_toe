@@ -1,4 +1,8 @@
-
+.space-container {
+  border-right: 2px solid black; 
+  border-bottom: 2px solid black;
+  border-radius: 4px;
+}
 
 .space-container:last-child, .space-container:nth-child(3), .space-container:nth-child(6), .space-container:nth-child(9) {
   border-right: none; 
@@ -15,8 +19,6 @@
   justify-content: center;
   align-items: center;
   background-color: white;
-  border-right: 2px solid black; 
-  border-bottom: 2px solid black;
   cursor: pointer;
   height: 100%;
   width: 100%;

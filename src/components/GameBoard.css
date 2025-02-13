@@ -1,0 +1,8 @@
+.game-board-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+  grid-template-rows: repeat(3, 1fr); /* 3 equal rows */
+  width: 75vw;  /* 75% of the viewport width */
+  height: 75vh; /* 75% of the viewport height */
+  margin: auto; /* Center the grid on the page */
+}
